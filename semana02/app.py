@@ -70,6 +70,7 @@ def actualizar(recurso,archivo):
     	print(nombre)
     	print(porcentaje)
     	cursor.execute("INSERT INTO estadodescarga (nombre, porcentaje) VALUES (%s, %s)", (nombre, porcentaje));
+        conn.commit()
     elif recurso == "Monitoreo":
     	archivo = archivo.split("{")
     	archivo = archivo[1].split("}")
