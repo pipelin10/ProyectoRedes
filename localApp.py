@@ -20,9 +20,9 @@ conn = psycopg2.connect(
 @app.route('/')
 def homepage():
     resultado = "<h3>Por favor ingrese a uno de los siguientes enlaces </h3>"
-    resultado += "<p><a href=”EstadoDescarga”>proyectoredes2.herokuapp.com/EstadoDescarga</a></p>"
-    resultado += "<p><a href=”Monitoreo”>proyectoredes2.herokuapp.com/Monitoreo</a></p>"
-    resultado += "<p><a href=”AgregarDescarga”>proyectoredes2.herokuapp.com/AgregarDescarga</a></p>"
+    resultado += "<p><a href=EstadoDescarga>proyectoredes2.herokuapp.com/EstadoDescarga</a></p>"
+    resultado += "<p><a href=Monitoreo>proyectoredes2.herokuapp.com/Monitoreo</a></p>"
+    resultado += "<p><a href=AgregarDescarga>proyectoredes2.herokuapp.com/AgregarDescarga</a></p>"
     return resultado;
 
 @app.route('/AgregarDescarga', methods=['GET','POST'])
@@ -62,6 +62,8 @@ def mostrar(recurso):
     	for r in result:
     		resultado['enlace'+ str(i)] = r[0]
     		i+=1
+    		cursor.execute("DELETE FROM descarga WHERE enlace=%s", [r[0]])
+    		conn.commit()
     	resultado = json.dumps(resultado)
     	return resultado
     else:

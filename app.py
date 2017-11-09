@@ -64,6 +64,8 @@ def mostrar(recurso):
     	for r in result:
     		resultado['enlace'+ str(i)] = r[0]
     		i+=1
+    		cursor.execute("DELETE FROM descarga WHERE enlace=%s", [r[0]])
+    		conn.commit()
     	resultado = json.dumps(resultado)
     	return resultado
     else:
@@ -116,4 +118,3 @@ def actualizar(recurso):
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=True)
-
