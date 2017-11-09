@@ -36,7 +36,7 @@ def main():
 	print(solicitud.status_code, solicitud.reason)
 	tconn = transmissionrpc.Client('localhost', port=9091, user='transmission', password='transmission')
 	tconn.get_torrents()
-	descargas = urllib2.urlopen("http://0.0.0.0:5000/Descarga")
+	descargas = urllib2.urlopen("http://proyectoredes2.herokuapp.com/Descarga")
 	descargas = json.loads(descargas.read())
 	for i in range(len(descargas)):
 		tconn.add_torrent(descargas['enlace'+str(i)])
