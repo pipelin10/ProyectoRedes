@@ -88,7 +88,7 @@ def actualizar(recurso):
     if recurso == "EstadoDescarga":
     	nombre = archivo['nombre']
     	porcentaje = archivo['porcentaje']
-    	cursor.execute("SELECT * FROM estadodescarga")
+    	cursor.execute("SELECT * FROM estadodescarga WHERE nombre=%s", [nombre])
     	if cursor.rowcount < 1:
     		cursor.execute("INSERT INTO estadodescarga (nombre, porcentaje) VALUES (%s, %s)", (nombre, porcentaje));
     		conn.commit()
