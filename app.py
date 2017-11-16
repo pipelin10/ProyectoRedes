@@ -86,6 +86,8 @@ def actualizar(recurso):
     archivo = archivo.decode("utf-8","strict")
     archivo = json.loads(archivo)
     if recurso == "EstadoDescarga":
+	cursor.execute("DELETE FROM estadodescarga WHERE porcentaje < '1'")
+	conn.commit()
     	nombre = archivo['nombre']
     	porcentaje = archivo['porcentaje']
     	cursor.execute("SELECT * FROM estadodescarga WHERE nombre=%s", [nombre])

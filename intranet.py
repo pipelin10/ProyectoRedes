@@ -42,6 +42,7 @@ def main():
 		tconn.add_torrent(descargas['enlace'+str(i)])
 	for torrent in tconn.get_torrents() :
 		nombre = torrent.name
+		nombre = nombre.replace('+',' ')
 		porcentaje = str(torrent.metadataPercentComplete)
 		message = {}
 		message['nombre'] = nombre
